@@ -1,10 +1,9 @@
 const express = require('express');
 const path = require('path');
 const firebaseadmin = require('firebase-admin');
-const serviceAccount = require('problem-generator-322719-firebase-adminsdk-5b3pz-daf3c80ac4.json');
 
 firebaseadmin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.applicationDefault(),
     databaseURL: "https://problem-generator-322719-default-rtdb.firebaseio.com"
 });
 
