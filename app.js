@@ -3,7 +3,7 @@ const path = require('path');
 const firebaseadmin = require('firebase-admin');
 
 firebaseadmin.initializeApp({
-    credential: admin.credential.applicationDefault(),
+    credential: firebaseadmin.credential.applicationDefault(),
     databaseURL: "https://problem-generator-322719-default-rtdb.firebaseio.com"
 });
 
