@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const firebaseadmin = require('firebase-admin');
-
 firebaseadmin.initializeApp({
     credential: firebaseadmin.credential.applicationDefault(),
     databaseURL: "https://problem-generator-322719-default-rtdb.firebaseio.com"
