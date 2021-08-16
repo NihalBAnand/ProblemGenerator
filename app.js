@@ -10,25 +10,29 @@ firebaseadmin.initializeApp({
 
 const app = express();
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
     console.log(req.method, req.path);
     next();
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
+    
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/about.html'))
+});
+
+app.get('/dbtest', (req, res) => {
     var db = firebaseadmin.database();
     var ref = db.ref();
     ref.child('problems').child('1289nfj328').set({
         problem: "I can't open my refrigerator",
         rating: "-10"
     });
-});
-
-app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/about.html'))
 });
 
 app.listen(3000, () => {
