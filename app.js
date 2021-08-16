@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
-const firebaseadmin = require('firebase-admin');
-firebaseadmin.initializeApp({
-    credential: firebaseadmin.credential.applicationDefault(),
+const admin = require('firebase-admin');
+admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
     databaseURL: "https://problem-generator-322719-default-rtdb.firebaseio.com"
 });
 
@@ -27,7 +27,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/dbtest', (req, res) => {
-    var db = firebaseadmin.database();
+    var db = admin.database();
     var ref = db.ref();
     ref.child('problems').child('1289nfj328').set({
         problem: "I can't open my refrigerator",
