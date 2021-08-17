@@ -61,7 +61,7 @@ app.get('/get-problem', (req, res) => {
             }
         }
         var weight = Math.random() * 4;
-        if(weight == 0) {
+        if(weight == 0 || priority.length == 0) {
             out = plebes[Math.random() * plebes.length].problem;
         }
         else {
