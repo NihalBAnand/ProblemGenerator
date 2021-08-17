@@ -36,9 +36,9 @@ function generateProblem() {
     document.getElementById('problem-submission').style.display = "none";
     document.getElementById('problem-generator').style.display = "block";
 
-    // $.get("/get-problem", (data) => {
-    //     document.getElementById("problem-disp").innerHTML = data;
-    // });
+    $.get("/get-problem", (data) => {
+        document.getElementById("problem-disp").innerHTML = data;
+    });
 }
 
 function vote(positive){
