@@ -38,12 +38,12 @@ function generateProblem() {
 
     $.get("/get-problem", (data) => {
         alert(data);
-        document.getElementById("problem-disp").innerHTML = data;
+        document.getElementById("problem-disp").innerText = data;
     });
 }
 
 function vote(positive){
-    $.post("/problem-vote", {problem: document.getElementById("problem-disp").innerHTML, upvote: positive}, (data) => {
+    $.post("/problem-vote", {problem: document.getElementById("problem-disp").innerText, upvote: positive}, (data) => {
         alert(data);
     });
 }
