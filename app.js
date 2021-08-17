@@ -59,13 +59,14 @@ app.get('/get-problem', (req, res) => {
                 plebes.push(problems[i]);
             }
         }
-        console.log(plebes);
-        var weight = Math.random() * 4;
+        
+        var weight = Math.round(Math.random() * 4);
         if(weight == 0 || priority.length == 0) {
-            out = plebes[Math.random() * plebes.length].problem;
+            console.log(plebes)
+            out = plebes[Math.round(Math.random() * plebes.length)].problem;
         }
         else {
-            out = priority[Math.random() * priority.length].problem;
+            out = priority[Math.round(Math.random() * priority.length)].problem;
         }
         res.end(out);
     });
