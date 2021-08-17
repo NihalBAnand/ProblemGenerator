@@ -96,7 +96,7 @@ app.post('/problem-vote', (req, res) => {
     
     var updates = {};
     console.log(req.body.upvote)
-    if (Boolean(req.body.upvote)) {
+    if (req.body.upvote == "true") {
         var update = {
             problem: req.body.problem,
             rating: String(Number(req.body.rating) + 1)
