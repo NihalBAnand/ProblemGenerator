@@ -87,3 +87,7 @@ body {
 #problem-generator img {
     max-width: 100px;
 }
+
+.hide-this {
+    display: none;
+}

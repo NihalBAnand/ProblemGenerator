@@ -37,12 +37,14 @@ function generateProblem() {
     document.getElementById('problem-generator').style.display = "block";
 
     $.get("/get-problem", (data) => {
-        document.getElementById("problem-disp").innerText = data;
+        outs = data.split(",")
+        document.getElementById("problem-disp").innerText = outs[0];
+        document.getElementById("rating").innerText = outs[1];
     });
 }
 
 function vote(positive){
-    $.post("/problem-vote", {problem: document.getElementById("problem-disp").innerText, upvote: positive}, (data) => {
+    $.post("/problem-vote", {problem: document.getElementById("problem-disp").innerText, upvote: positive, rating: document.getElementById("rating").innerText}, (data) => {
         alert(data);
     });
 }

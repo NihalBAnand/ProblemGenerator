@@ -72,13 +72,13 @@ app.get('/get-problem', (req, res) => {
         var weight = Math.round(Math.random() * 4);
         if(weight == 0 || priority.length == 0) {
             console.log(plebes[0]);
-            out = plebes[getRandomInt(0, plebes.length - 1)].problem;
+            out = plebes[getRandomInt(0, plebes.length - 1)];
         }
         else {
-            out = priority[getRandomInt(0, priority.length - 1)].problem;
+            out = priority[getRandomInt(0, priority.length - 1)];
         }
         //console.log(out);
-        res.end(out);
+        res.end(out.problem + "," + out.rating);
     });
 });
 
@@ -92,27 +92,27 @@ app.post('/problem-submission', (req, res) => {
 });
 
 app.post('/problem-vote', (req, res) => {
-    database.ref().on('value', (snapshot) => {
-        var updates = {};
-        if (Boolean(req.body.upvote)) {
-            var update = {
-                problem: req.body.problem,
-                rating: String(Number(snapshot.val()['problems'][req.body.problem].rating) + 1)
-            }
-            
-            updates['problems/' + req.body.problem] = update;
+    
+    var updates = {};
+    if (Boolean(req.body.upvote)) {
+        var update = {
+            problem: req.body.problem,
+            rating: String(Number(req.body.rating) + 1)
         }
-        else {
-            var update = {
-                problem: req.body.problem,
-                rating: String(Number(snapshot.val()['problems'][req.body.problem].rating) - 1)
-            }
-            console.log("yeet");
-            updates['problems/' + req.body.problem] = update;
+        
+        updates['problems/' + req.body.problem] = update;
+    }
+    else {
+        var update = {
+            problem: req.body.problem,
+            rating: String(Number(req.body.rating) - 1)
         }
-        firebase.database().ref().update(updates);
-        res.end("Vote submitted!");
-    });
+        console.log("yeet");
+        updates['problems/' + req.body.problem] = update;
+    }
+    firebase.database().ref().update(updates);
+    res.end("Vote submitted!");
+    
 })
 
 app.listen(3000, () => {
