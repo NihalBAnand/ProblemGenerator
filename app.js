@@ -92,19 +92,24 @@ app.post('/problem-submission', (req, res) => {
 });
 
 app.post('/problem-vote', (req, res) => {
-    if (Boolean(req.body.upvote)) {
-        database.ref('problems/' + req.body.problem).set({
-            problem: req.body.problem,
-            rating: String(Number(req.body.rating) + 1)
-        });
-    }
-    else {
-        database.ref('problems/' + req.body.problem).set({
-            problem: req.body.problem,
-            rating: String(Number(req.body.rating) - 1)
-        });
-    }
-    res.end("Vote submitted!");
+    database.ref().on('value', (snapshot) => {
+        var updates = {};
+        if (Boolean(req.body.upvote)) {
+            var update = {
+                problem = req.body.problem,
+                rating = String(Number(snapshot.val()['problems'][req.body.problem]) + 1)
+            }
+            updates['problems/' + req.body.problem] = update;
+        }
+        else {
+            var update = {
+                problem = req.body.problem,
+                rating = String(Number(snapshot.val()['problems'][req.body.problem]) - 1)
+            }
+            updates['problems/' + req.body.problem] = update;
+        }
+        res.end("Vote submitted!");
+    });
 })
 
 app.listen(3000, () => {

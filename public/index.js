@@ -37,7 +37,6 @@ function generateProblem() {
     document.getElementById('problem-generator').style.display = "block";
 
     $.get("/get-problem", (data) => {
-        alert(data);
         document.getElementById("problem-disp").innerText = data;
     });
 }
