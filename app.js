@@ -59,8 +59,8 @@ app.get('/get-problem', (req, res) => {
         var priority = [];
         var plebes = [];
         for (i in problems) {
-            console.log(problems[i]);
-            if (problems[i].rating > 0) {
+            console.log(problems[i]["I don't have a problem to solve!!!"]);
+            if (Number(problems[i].rating) > 0) {
                 priority.push(problems[i]);
             }
             else {
@@ -91,16 +91,16 @@ app.post('/problem-submission', (req, res) => {
 });
 
 app.post('/problem-vote', (req, res) => {
-    if (req.body.upvote) {
+    if (Boolean(req.body.upvote)) {
         database.ref('problems/' + req.body.problem).set({
             problem: req.body.problem,
-            rating: req.body.rating + 1
+            rating: Number(req.body.rating) + 1
         });
     }
     else {
         database.ref('problems/' + req.body.problem).set({
             problem: req.body.problem,
-            rating: req.body.rating - 1
+            rating: Number(req.body.rating) - 1
         });
     }
     res.end("Vote submitted!");
