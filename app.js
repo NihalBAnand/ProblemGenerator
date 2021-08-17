@@ -68,6 +68,7 @@ app.get('/get-problem', (req, res) => {
         else {
             out = priority[Math.round(Math.random() * priority.length)].problem;
         }
+        console.log(out);
         res.end(out);
     });
 });
