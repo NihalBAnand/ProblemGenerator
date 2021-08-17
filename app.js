@@ -52,7 +52,6 @@ app.get('/get-problem', (req, res) => {
         var priority = [];
         var plebes = [];
         for (i in problems) {
-            console.log(problems[i]);
             if (problems[i].rating > 0) {
                 priority.push(problems[i]);
             }
@@ -60,6 +59,7 @@ app.get('/get-problem', (req, res) => {
                 plebes.push(problems[i]);
             }
         }
+        console.log(plebes);
         var weight = Math.random() * 4;
         if(weight == 0 || priority.length == 0) {
             out = plebes[Math.random() * plebes.length].problem;
