@@ -99,7 +99,7 @@ app.post('/problem-vote', (req, res) => {
                 problem: req.body.problem,
                 rating: String(Number(snapshot.val()['problems'][req.body.problem].rating) + 1)
             }
-            console.log(snapshot.val()['problems'][req.body.problem]);
+            
             updates['problems/' + req.body.problem] = update;
         }
         else {
@@ -107,7 +107,7 @@ app.post('/problem-vote', (req, res) => {
                 problem: req.body.problem,
                 rating: String(Number(snapshot.val()['problems'][req.body.problem].rating) - 1)
             }
-            console.log(snapshot.val()['problems'][req.body.problem]);
+            console.log("yeet");
             updates['problems/' + req.body.problem] = update;
         }
         firebase.database().ref().update(updates);
