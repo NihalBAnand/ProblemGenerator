@@ -78,7 +78,7 @@ app.get('/get-problem', (req, res) => {
             out = priority[getRandomInt(0, priority.length - 1)].problem;
         }
         //console.log(out);
-        res.end("Helo");
+        res.end(out);
     });
 });
 
