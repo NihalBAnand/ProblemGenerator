@@ -69,13 +69,13 @@ app.get('/get-problem', (req, res) => {
         
         var weight = Math.round(Math.random() * 4);
         if(weight == 0 || priority.length == 0) {
-            console.log(plebes[getRandomInt(0, plebes.length - 1)]);
+            console.log(plebes[0]);
             out = plebes[getRandomInt(0, plebes.length - 1)].problem;
         }
         else {
             out = priority[getRandomInt(0, priority.length - 1)].problem;
         }
-        console.log(out);
+        //console.log(out);
         res.end(out);
     });
 });
