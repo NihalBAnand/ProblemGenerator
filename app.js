@@ -95,13 +95,13 @@ app.post('/problem-vote', (req, res) => {
     if (Boolean(req.body.upvote)) {
         database.ref('problems/' + req.body.problem).set({
             problem: req.body.problem,
-            rating: Number(req.body.rating) + 1
+            rating: String(Number(req.body.rating) + 1)
         });
     }
     else {
         database.ref('problems/' + req.body.problem).set({
             problem: req.body.problem,
-            rating: Number(req.body.rating) - 1
+            rating: String(Number(req.body.rating) - 1)
         });
     }
     res.end("Vote submitted!");
