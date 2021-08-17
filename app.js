@@ -1,12 +1,20 @@
 const express = require('express');
 const path = require('path');
-const admin = require('firebase-admin');
-admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-    databaseURL: "https://problem-generator-322719-default-rtdb.firebaseio.com"
-});
+const firebase = require('firebase/app');
+require('firebase/database');
 
+var firebaseConfig = {
+    apiKey: "AIzaSyACqeTWFvKpSnTfAnzbS6H5WvGywYaHDl0",
+    authDomain: "problem-generator-322719.firebaseapp.com",
+    databaseURL: "https://problem-generator-322719-default-rtdb.firebaseio.com",
+    projectId: "problem-generator-322719",
+    storageBucket: "problem-generator-322719.appspot.com",
+    messagingSenderId: "429546641969",
+    appId: "1:429546641969:web:5657c384b029009ea89310",
+    measurementId: "G-P9Q15LPPTB"
+};
 
+firebase.initializeApp(firebaseConfig);
 
 const app = express();
 
@@ -27,12 +35,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/dbtest', (req, res) => {
-    var db = admin.database();
-    var ref = db.ref();
-    ref.child('problems').child('1289nfj328').set({
-        problem: "I can't open my refrigerator",
-        rating: "-10"
-    });
+    
 });
 
 app.listen(3000, () => {
