@@ -59,22 +59,23 @@ app.get('/get-problem', (req, res) => {
         var priority = [];
         var plebes = [];
         for (i in problems) {
-            console.log(problems[i]["I don't have a problem to solve!!!"]);
-            if (Number(problems[i].rating) > 0) {
-                priority.push(problems[i]);
-            }
-            else {
-                plebes.push(problems[i]);
+            for (key in problems[i]){
+                if (Number(problems[i][key].rating) > 0) {
+                    priority.push(problems[i][key]);
+                }
+                else {
+                    plebes.push(problems[i][key]);
+                }
             }
         }
         
         var weight = Math.round(Math.random() * 4);
         if(weight == 0 || priority.length == 0) {
             console.log(plebes[0]);
-            out = plebes[getRandomInt(0, plebes.length - 1)];
+            out = plebes[getRandomInt(0, plebes.length - 1)].problem;
         }
         else {
-            out = priority[getRandomInt(0, priority.length - 1)];
+            out = priority[getRandomInt(0, priority.length - 1)].problem;
         }
         //console.log(out);
         res.end(String(out));
