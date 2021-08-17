@@ -40,9 +40,10 @@ app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/about.html'))
 });
 
-app.get('get-problem', (req, res) => {
+app.get('/get-problem', (req, res) => {
     
     database.ref().on('value', (snapshot) => {
+        console.log(snapshot.val());
         var out = ""
         var problems = [];
         for (i in snapshot.val()) {
