@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const firebase = require('firebase/app');
 require('firebase/database');
 
@@ -20,6 +21,9 @@ var database = firebase.database();
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.use((req, res, next) => {
     console.log(req.method, req.path);
     next();
@@ -36,8 +40,13 @@ app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/about.html'))
 });
 
-app.get('/dbtest', (req, res) => {
-    
+app.post('/problem-submission', (req, res) => {
+    database.ref('problems/' + req.body.problem).set({
+        problem: req.body.problem,
+        rating: req.body.rating
+    });
+    console.log("Problem: " + req.body.problem + ' Rating: ' + req.body.rating);
+    res.end("Success!");
 });
 
 app.listen(3000, () => {
