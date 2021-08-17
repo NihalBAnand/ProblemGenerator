@@ -95,6 +95,7 @@ app.post('/problem-submission', (req, res) => {
 app.post('/problem-vote', (req, res) => {
     
     var updates = {};
+    console.log(req.body.upvote)
     if (Boolean(req.body.upvote)) {
         var update = {
             problem: req.body.problem,
