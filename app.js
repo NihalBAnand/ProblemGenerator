@@ -108,6 +108,7 @@ app.post('/problem-vote', (req, res) => {
             }
             updates['problems/' + req.body.problem] = update;
         }
+        firebase.database().ref().update(updates);
         res.end("Vote submitted!");
     });
 })
