@@ -48,9 +48,9 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/get-problem', (req, res) => {
-    
+    var out = ""
     database.ref().on('value', (snapshot) => {
-        var out = ""
+        
         var problems = [];
         for (i in snapshot.val()) {
             problems.push(snapshot.val()[i]);
@@ -78,8 +78,9 @@ app.get('/get-problem', (req, res) => {
             out = priority[getRandomInt(0, priority.length - 1)];
         }
         //console.log(out);
-        res.end(out.problem + "," + out.rating);
+        
     });
+    res.end(out.problem + "," + out.rating);
 });
 
 app.post('/problem-submission', (req, res) => {
