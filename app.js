@@ -97,7 +97,7 @@ app.post('/problem-vote', (req, res) => {
         if (Boolean(req.body.upvote)) {
             var update = {
                 problem: req.body.problem,
-                rating: String(Number(snapshot.val()['problems'][req.body.problem]) + 1)
+                rating: String(Number(snapshot.val()['problems'][req.body.problem].rating) + 1)
             }
             console.log(snapshot.val()['problems'][req.body.problem]);
             updates['problems/' + req.body.problem] = update;
@@ -105,7 +105,7 @@ app.post('/problem-vote', (req, res) => {
         else {
             var update = {
                 problem: req.body.problem,
-                rating: String(Number(snapshot.val()['problems'][req.body.problem]) - 1)
+                rating: String(Number(snapshot.val()['problems'][req.body.problem].rating) - 1)
             }
             console.log(snapshot.val()['problems'][req.body.problem]);
             updates['problems/' + req.body.problem] = update;
