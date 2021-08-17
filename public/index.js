@@ -9,3 +9,7 @@ function updateDB() {
     request.open("GET", "/dbtest", false);
     request.send();
 }
+
+$(document).ready(() => {
+	$('.header').height($(window).height());
+})

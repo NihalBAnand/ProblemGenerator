@@ -37,11 +37,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/dbtest', (req, res) => {
-    database.ref('users/user1').set({
-        username: "test user",
-        problem: "I have no DB entries :(",
-        rating: 10
-    });
+    
 });
 
 app.listen(3000, () => {
