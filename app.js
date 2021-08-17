@@ -40,6 +40,35 @@ app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/about.html'))
 });
 
+app.get('get-problem', (req, res) => {
+    
+    database.ref().on('value', (snapshot) => {
+        var out = ""
+        var problems = [];
+        for (i in snapshot.val()) {
+            problems.push(snapshot.val()[i]);
+        }
+        var priority = [];
+        var plebes = [];
+        for (i in problems) {
+            if (problems[i].rating > 0) {
+                priority.push(problems[i]);
+            }
+            else {
+                plebes.push(problems[i]);
+            }
+        }
+        var weight = Math.random() * 4;
+        if(weight == 0) {
+            out = plebes[Math.random() * plebes.length].problem;
+        }
+        else {
+            out = priority[Math.random() * priority.length].problem;
+        }
+        res.end(out);
+    });
+});
+
 app.post('/problem-submission', (req, res) => {
     database.ref('problems/' + req.body.problem).set({
         problem: req.body.problem,
@@ -48,6 +77,22 @@ app.post('/problem-submission', (req, res) => {
     console.log("Problem: " + req.body.problem + ' Rating: ' + req.body.rating);
     res.end("Success!");
 });
+
+app.post('/problem-vote', (req, res) => {
+    if (req.body.upvote) {
+        database.ref('problems/' + req.body.problem).set({
+            problem: req.body.problem,
+            rating: req.body.rating + 1
+        });
+    }
+    else {
+        database.ref('problems/' + req.body.problem).set({
+            problem: req.body.problem,
+            rating: req.body.rating - 1
+        });
+    }
+    res.end("Vote submitted!");
+})
 
 app.listen(3000, () => {
     console.log("Listening on port 3000.");

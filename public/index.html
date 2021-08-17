@@ -36,7 +36,7 @@
                 <div class="container" id="buttons">
                     <div class="row">
                       <div class="col-sm">
-                        <button class="btn btn-outline-secondary btn-lg" onclick="">Generate a Problem</button>
+                        <button class="btn btn-outline-secondary btn-lg" onclick="generateProblem()">Generate a Problem</button>
                       </div>
                       <div class="col-sm">
                         <button class="btn btn-outline-secondary btn-lg" onclick="openProblemSubmission()">Submit a Problem</button>
@@ -44,8 +44,19 @@
                     </div>
                 </div>
                 <div id="problem-submission">
-                    <input id="problem-text" type="text" placeholder="Input your problem here!">
+                    <br>
+                    <input id="problem-text" type="text" placeholder="Input your problem here!" size="30pl">
                     <button class="btn btn-outline-secondary btn-md" onclick="submitProblem()">Submit</button>
+                </div>
+                <div id="problem-generator">
+                    <br>
+                    <p id="problem-disp"></p>
+                    <br>
+                    <p>Was this problem helpful/inspiring?</p>
+                    <br>
+                    <a onclick="vote(true)"><img src="images/upvote.png"></a>
+                    <a onclick="vote(false)"><img src="images/downvote.png"></a>
+
                 </div>
             </div>
 

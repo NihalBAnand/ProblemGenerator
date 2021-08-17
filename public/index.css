@@ -67,3 +67,23 @@ body {
     background:#fff;
     color:#000;
 }
+
+.description input[type="text"] {
+    background-color: #dbccf7;
+}
+
+.description ::placeholder {
+    color:#000;
+}
+
+#problem-submission input[type="text"] {
+    margin-right: 4em;
+}
+
+#problem-submission button {
+    vertical-align: top;
+}
+
+#problem-generator img {
+    max-width: 100px;
+}
