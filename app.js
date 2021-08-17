@@ -69,7 +69,7 @@ app.get('/get-problem', (req, res) => {
         
         var weight = Math.round(Math.random() * 4);
         if(weight == 0 || priority.length == 0) {
-            console.log(plebes[0]);
+            console.log(plebes[0][0]);
             out = plebes[getRandomInt(0, plebes.length - 1)];
         }
         else {
