@@ -53,7 +53,7 @@ app.get('/get-problem', (req, res) => {
         var out = ""
         var problems = [];
         for (i in snapshot.val()) {
-            problems.push(snapshot.val()[i].val());
+            problems.push(snapshot.val()[i]);
             
         }
         var priority = [];
