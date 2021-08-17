@@ -59,11 +59,12 @@ app.get('/get-problem', (req, res) => {
         var priority = [];
         var plebes = [];
         for (i in problems) {
+            console.log(problems[i]);
             if (problems[i].rating > 0) {
-                priority.push(problems[i].problem);
+                priority.push(problems[i]);
             }
             else {
-                plebes.push(problems[i].problem);
+                plebes.push(problems[i]);
             }
         }
         
