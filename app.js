@@ -43,18 +43,17 @@ app.get('/about', (req, res) => {
 app.get('/get-problem', (req, res) => {
     
     database.ref().on('value', (snapshot) => {
-        console.log(snapshot.val());
         var out = ""
         var problems = [];
         for (i in snapshot.val()) {
             problems.push(snapshot.val()[i]);
-            console.log(snapshot.val()[i])
         }
         var priority = [];
         var plebes = [];
         for (i in problems) {
             if (problems[i].rating > 0) {
                 priority.push(problems[i]);
+                console.log(problems[i])
             }
             else {
                 plebes.push(problems[i]);
