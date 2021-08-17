@@ -2,7 +2,14 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const firebase = require('firebase/app');
+const { getEnabledCategories } = require('trace_events');
 require('firebase/database');
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 var firebaseConfig = {
     apiKey: "AIzaSyACqeTWFvKpSnTfAnzbS6H5WvGywYaHDl0",
@@ -63,10 +70,10 @@ app.get('/get-problem', (req, res) => {
         var weight = Math.round(Math.random() * 4);
         if(weight == 0 || priority.length == 0) {
             console.log(plebes)
-            out = plebes[Math.round(Math.random() * plebes.length)].problem;
+            out = plebes[getRandomInt(0, plebes.length)].problem;
         }
         else {
-            out = priority[Math.round(Math.random() * priority.length)].problem;
+            out = priority[getRandomInt(0, priority.length)].problem;
         }
         console.log(out);
         res.end(out);
